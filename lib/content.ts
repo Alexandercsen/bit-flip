@@ -415,10 +415,10 @@ export const tutors: Tutor[] = [
     experience: "Programming tutoring",
     approach: "practical, patient",
     shortIntro:
-      "Python and C++. Absolute beginners through OOP and recursion. Mixes theory with practice in the same session.",
+      "Integrated Computer Science student at Trinity. Experience in tutoring Python, C++, LC Comp Sci",
     bio: [
-      "Hi, I'm Loic. I'm experienced in writing both Python and C++, and I've taught absolute beginners who've never written a line of code before, to people working through harder topics like object oriented programming and recursion.",
-      "I enjoy mixing theory and practice together instead of separating them out, so you're not just memorizing concepts but actually applying them as you learn. I'm adaptable to different learning styles and I'm a patient person, so there's no such thing as a stupid question. On top of teaching you how to code, I'll also teach you how to debug and research your own code, two skills that matter just as much as writing it in the first place.",
+      "I'm Loic, another tutor at BIT FLIP STUDIO. Currently studying Integrated Computer Science at Trinity College Dublin, I have experience in writing both Python and C++, and teaching beginners who've never written a line of code before, to people working through harder topics like object oriented programming and recursion.",
+      "I enjoy mixing theory and practice together instead of separating them out, so you're not just memorizing concepts but actually applying them as you learn. I'm adaptable to different learning styles and I'm a patient person, so there's no such thing as a stupid question, only stupid answers. On top of teaching you how to code, I'll also teach you how to debug and research your own code, two skills that matter just as much as writing it in the first place.",
     ],
     linkedin: "https://www.linkedin.com/in/loic-peloille/",
     photo: "/api/media/tutors/loic-peloille.png",
