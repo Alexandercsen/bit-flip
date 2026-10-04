@@ -395,9 +395,9 @@ export const tutors: Tutor[] = [
     experience: "SWE + CS tutoring",
     approach: "practical",
     shortIntro:
-      "Software engineer at a risk management and supplier information company (defense, finance, aerospace). BSc Software Engineering at Maynooth. Python, Java, C, LC Comp Sci.",
+      "Software engineer at a risk management and supplier information company (defense, finance, aerospace). Majoring in Software Engineering at Maynooth. Python, Java, C, LC Comp Sci.",
     bio: [
-      "I'm Alexander, one of the tutors behind BIT FLIP STUDIO. BSc of Software Engineering at Maynooth University. I work with C, Python, and Java.",
+      "I'm Alexander, one of the tutors behind BIT FLIP STUDIO. I'm majoring in Software Engineering at Maynooth University. I work with C, Python, and Java.",
       "I now work as a software engineer at a risk management and supplier information company serving defense, finance, and aerospace.",
       "I've tutored Maynooth CS students on Java and Prolog, and helped 6th years prep for Leaving Certificate Computer Science.",
       "I care a lot about embedded systems and figuring out why something broke. In lessons I break problems into smaller pieces. I'll push you to reason through it, not wait for me to type the answer.",
