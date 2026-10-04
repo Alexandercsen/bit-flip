@@ -573,3 +573,5 @@ export const levelOptions = [
   "University / college",
   "Other",
 ];
+
+export const lessonTypeOptions = ["One-to-one", "Exam prep"] as const;

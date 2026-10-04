@@ -15,7 +15,7 @@ export const privacyPolicy = {
     {
       heading: "What personal data we collect",
       body: [
-        "When you use the contact form or email us, we may receive your name, email address, student level, subject of interest, message content, preferred lesson format, and availability notes.",
+        "When you use the contact form or email us, we may receive your name, email address, student level, subject of interest, lesson type (one-to-one or exam prep), message content, and availability notes.",
         "Our hosting provider may process technical data such as IP address, browser type, and request logs needed to deliver the site securely.",
         "If you set a cookie preference, we store that choice in your browser (local storage).",
       ],

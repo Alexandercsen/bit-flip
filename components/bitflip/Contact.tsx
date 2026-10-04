@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { levelOptions, site, subjectOptions } from "@/lib/content";
+import {
+  lessonTypeOptions,
+  levelOptions,
+  site,
+  subjectOptions,
+} from "@/lib/content";
 import { cn } from "@/lib/cn";
-import { Button, inputClassName } from "./ui";
-import { DocumentHeading, EditorSurface, Prose } from "./Document";
-import { SiteFooter } from "./SiteFooter";
+import { Button, Card, inputClassName, Prose, SectionHeading } from "./ui";
 
-type FormState = "idle" | "submitting" | "success" | "error";
+type FormState = "idle" | "submitting" | "success" | "error" | "rate_limited";
 
 type ContactProps = {
   prefillSubject?: string;
@@ -15,6 +18,8 @@ type ContactProps = {
 
 export function Contact({ prefillSubject = "" }: ContactProps) {
   const [formState, setFormState] = useState<FormState>("idle");
+  const [errorDetail, setErrorDetail] = useState("");
+  const [formOpenedAt] = useState(() => Date.now());
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,6 +28,7 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
     message: "",
     format: "",
     availability: "",
+    bf_hp: "",
   });
 
   const subjectValue = formData.subject || prefillSubject;
@@ -30,15 +36,34 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setFormState("submitting");
+    setErrorDetail("");
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, subject: subjectValue }),
+        body: JSON.stringify({
+          ...formData,
+          subject: subjectValue,
+          formOpenedAt,
+        }),
       });
 
-      if (!res.ok) throw new Error("Failed to send");
+      const data = (await res.json().catch(() => null)) as {
+        error?: string;
+        success?: boolean;
+      } | null;
+
+      if (res.status === 429) {
+        setFormState("rate_limited");
+        return;
+      }
+
+      if (!res.ok || !data?.success) {
+        setErrorDetail(data?.error || "Failed to send message");
+        throw new Error("Failed to send");
+      }
+
       setFormState("success");
       setFormData({
         name: "",
@@ -48,6 +73,7 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
         message: "",
         format: "",
         availability: "",
+        bf_hp: "",
       });
     } catch {
       setFormState("error");
@@ -55,51 +81,55 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
   }
 
   return (
-    <section id="contact" className="scroll-mt-4">
-      <EditorSurface>
-        <DocumentHeading level={1}>
-          <span className="text-jb-purple"># </span>
-          Contact <span className="text-jb-cyan">BIT</span>{" "}
-          <span className="text-jb-blue">FLIP</span>
-        </DocumentHeading>
+    <section id="contact" className="scroll-mt-20 border-t border-jb-border">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading>
+          Contact <span className="text-jb-link">BIT FLIP</span>
+        </SectionHeading>
         <Prose className="mt-4 max-w-2xl">
           Tell us what you&apos;re learning and what&apos;s stuck. We usually
           reply the same day if you write before evening.
         </Prose>
 
-        <dl className="mt-8 grid gap-4 sm:grid-cols-3">
+        <dl className="mt-10 grid gap-6 sm:grid-cols-3">
           <div>
-            <dt className="font-mono text-[11px] text-jb-muted">Email</dt>
+            <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-jb-muted">
+              Email
+            </dt>
             <dd className="mt-1">
               <a
                 href={`mailto:${site.email}`}
-                className="font-sans text-[14px] text-jb-blue hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-blue"
+                className="text-[15px] text-jb-link hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-link"
               >
                 {site.email}
               </a>
             </dd>
           </div>
           <div>
-            <dt className="font-mono text-[11px] text-jb-muted">Location</dt>
-            <dd className="mt-1 font-sans text-[14px] text-jb-secondary">
+            <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-jb-muted">
+              Location
+            </dt>
+            <dd className="mt-1 text-[15px] text-jb-secondary">
               {site.location}
             </dd>
           </div>
           <div>
-            <dt className="font-mono text-[11px] text-jb-muted">Availability</dt>
-            <dd className="mt-1 font-sans text-[14px] text-jb-secondary">
+            <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-jb-muted">
+              Availability
+            </dt>
+            <dd className="mt-1 text-[15px] text-jb-secondary">
               {site.availability}
             </dd>
           </div>
         </dl>
 
-        <div className="mt-8 border border-jb-border bg-jb-tool p-6">
+        <Card className="mt-10">
           {formState === "success" ? (
             <div role="status" className="space-y-2">
               <p className="font-mono text-[13px] text-jb-green">
                 Message sent successfully.
               </p>
-              <Prose className="text-[14px]">
+              <Prose className="text-[15px]">
                 Check your inbox (and spam). We&apos;ll reply when we see it.
               </Prose>
               <Button
@@ -110,16 +140,40 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
                 Send another message
               </Button>
             </div>
+          ) : formState === "rate_limited" ? (
+            <div role="alert" className="space-y-2">
+              <p className="font-mono text-[13px] text-jb-yellow">
+                Too many messages from this connection.
+              </p>
+              <Prose className="text-[15px]">
+                Wait a bit and try again, or email{" "}
+                <a
+                  href={`mailto:${site.email}`}
+                  className="text-jb-link hover:underline"
+                >
+                  {site.email}
+                </a>{" "}
+                directly.
+              </Prose>
+              <Button
+                variant="secondary"
+                className="mt-4"
+                onClick={() => setFormState("idle")}
+              >
+                Back to form
+              </Button>
+            </div>
           ) : formState === "error" ? (
             <div role="alert" className="space-y-2">
               <p className="font-mono text-[13px] text-jb-red">
                 Something went wrong.
               </p>
-              <Prose className="text-[14px]">
-                Please try again or email us directly at{" "}
+              <Prose className="text-[15px]">
+                {errorDetail ? `${errorDetail}. ` : null}
+                You can also email us at{" "}
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-jb-blue hover:underline"
+                  className="text-jb-link hover:underline"
                 >
                   {site.email}
                 </a>
@@ -134,12 +188,30 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
               </Button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="relative space-y-4">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
+              >
+                <label htmlFor="bf_hp">Leave blank</label>
+                <input
+                  id="bf_hp"
+                  name="bf_hp"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.bf_hp}
+                  onChange={(e) =>
+                    setFormData({ ...formData, bf_hp: e.target.value })
+                  }
+                />
+              </div>
               <FormField label="Name" htmlFor="name" required>
                 <input
                   id="name"
                   type="text"
                   required
+                  maxLength={80}
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -152,6 +224,7 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
                   id="email"
                   type="email"
                   required
+                  maxLength={120}
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -200,6 +273,8 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
                   id="message"
                   required
                   rows={4}
+                  maxLength={4000}
+                  minLength={5}
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
@@ -207,17 +282,23 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
                   className={cn(inputClassName, "resize-y")}
                 />
               </FormField>
-              <FormField label="Preferred lesson format" htmlFor="format">
-                <input
+              <FormField label="Lesson type" htmlFor="format" required>
+                <select
                   id="format"
-                  type="text"
-                  placeholder="e.g. online"
+                  required
                   value={formData.format}
                   onChange={(e) =>
                     setFormData({ ...formData, format: e.target.value })
                   }
                   className={inputClassName}
-                />
+                >
+                  <option value="">Select type</option>
+                  {lessonTypeOptions.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
               </FormField>
               <FormField
                 label="Preferred availability"
@@ -227,6 +308,7 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
                   id="availability"
                   type="text"
                   placeholder="e.g. weekday evenings"
+                  maxLength={200}
                   value={formData.availability}
                   onChange={(e) =>
                     setFormData({
@@ -246,10 +328,8 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
               </Button>
             </form>
           )}
-        </div>
-
-        <SiteFooter />
-      </EditorSurface>
+        </Card>
+      </div>
     </section>
   );
 }

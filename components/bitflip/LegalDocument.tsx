@@ -7,13 +7,6 @@ type LegalSection = {
   body: string[];
 };
 
-type LegalPageProps = {
-  title: string;
-  lastUpdated: string;
-  sections: LegalSection[];
-  description: string;
-};
-
 export function buildLegalMetadata(
   title: string,
   description: string
@@ -28,31 +21,37 @@ export function LegalDocument({
   title,
   lastUpdated,
   sections,
-}: Omit<LegalPageProps, "description">) {
+}: {
+  title: string;
+  lastUpdated: string;
+  sections: LegalSection[];
+}) {
   return (
-    <div className="min-h-dvh bg-jb-main text-jb-text">
-      <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 sm:py-14">
-        <p className="font-mono text-[12px] text-jb-muted">
+    <div className="min-h-dvh bg-jb-bg text-jb-text">
+      <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
+        <p className="text-[13px] text-jb-muted">
           <Link
             href="/"
-            className="text-jb-cyan hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-blue"
+            className="text-jb-link hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-link"
           >
             ← BIT FLIP
           </Link>
         </p>
 
-        <h1 className="mt-6 font-mono text-[28px] text-jb-text">{title}</h1>
-        <p className="mt-2 font-sans text-[13px] text-jb-muted">
+        <h1 className="mt-6 text-3xl font-semibold tracking-tight text-jb-text sm:text-4xl">
+          {title}
+        </h1>
+        <p className="mt-2 text-[13px] text-jb-muted">
           Last updated: {lastUpdated}
         </p>
 
         <div className="mt-10 space-y-8">
           {sections.map((section) => (
             <section key={section.heading}>
-              <h2 className="font-mono text-[16px] text-jb-cyan">
+              <h2 className="text-[17px] font-semibold text-jb-text">
                 {section.heading}
               </h2>
-              <div className="mt-3 space-y-3 font-sans text-[15px] leading-relaxed text-jb-secondary">
+              <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-jb-secondary">
                 {section.body.map((paragraph, index) => (
                   <p key={`${section.heading}-${index}`}>{paragraph}</p>
                 ))}
@@ -61,7 +60,9 @@ export function LegalDocument({
           ))}
         </div>
 
-        <SiteFooter />
+        <div className="mt-14">
+          <SiteFooter />
+        </div>
       </div>
     </div>
   );

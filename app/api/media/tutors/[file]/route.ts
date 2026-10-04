@@ -6,15 +6,23 @@ const ALLOWED = new Set(["alexander-coyle.png", "loic-peloille.png"]);
 
 function isAllowedRequest(request: Request) {
   const site = request.headers.get("sec-fetch-site");
-  // Allow embedding from this site only. Block direct navigation / cross-site.
+  // Modern browsers send this for subresource loads from the page.
   if (site === "same-origin" || site === "same-site") return true;
 
-  const referer = request.headers.get("referer");
+  const origin = request.headers.get("origin");
   const host = request.headers.get("host");
+  if (origin && host) {
+    try {
+      if (new URL(origin).host === host) return true;
+    } catch {
+      // ignore
+    }
+  }
+
+  const referer = request.headers.get("referer");
   if (referer && host) {
     try {
-      const refHost = new URL(referer).host;
-      if (refHost === host) return true;
+      if (new URL(referer).host === host) return true;
     } catch {
       return false;
     }
@@ -32,6 +40,16 @@ export async function GET(
   }
 
   const { file } = await context.params;
+  // Reject encoded path tricks before basename normalisation.
+  if (
+    file.includes("..") ||
+    file.includes("/") ||
+    file.includes("\\") ||
+    file.includes("%")
+  ) {
+    return new NextResponse("Not found", { status: 404 });
+  }
+
   const safeName = path.basename(file);
 
   if (!ALLOWED.has(safeName)) {
@@ -51,6 +69,7 @@ export async function GET(
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "DENY",
         "Referrer-Policy": "same-origin",
+        "Cross-Origin-Resource-Policy": "same-origin",
       },
     });
   } catch {

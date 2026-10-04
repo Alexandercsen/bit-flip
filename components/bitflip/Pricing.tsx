@@ -1,40 +1,27 @@
 "use client";
 
 import { pricingPlans, site } from "@/lib/content";
-import { Button } from "./ui";
-import {
-  DocumentHeading,
-  EditorSurface,
-  Prose,
-} from "./Document";
+import { Button, Card, Prose, SectionHeading } from "./ui";
 
 const accentStyles = {
   blue: {
     border: "border-jb-blue/40",
-    bg: "bg-jb-blue/10",
     title: "text-jb-blue",
-    rule: "text-jb-blue/60",
     bullet: "bg-jb-blue",
   },
   green: {
     border: "border-jb-green/40",
-    bg: "bg-jb-green/10",
     title: "text-jb-green",
-    rule: "text-jb-green/60",
     bullet: "bg-jb-green",
   },
   yellow: {
     border: "border-jb-yellow/40",
-    bg: "bg-jb-yellow/10",
     title: "text-jb-yellow",
-    rule: "text-jb-yellow/60",
     bullet: "bg-jb-yellow",
   },
   purple: {
     border: "border-jb-purple/40",
-    bg: "bg-jb-purple/10",
     title: "text-jb-purple",
-    rule: "text-jb-purple/60",
     bullet: "bg-jb-purple",
   },
 } as const;
@@ -45,12 +32,9 @@ type PricingProps = {
 
 export function Pricing({ onBookSession }: PricingProps) {
   return (
-    <section id="pricing" className="scroll-mt-4">
-      <EditorSurface>
-        <DocumentHeading level={1}>
-          <span className="text-jb-purple"># </span>
-          Pricing
-        </DocumentHeading>
+    <section id="pricing" className="scroll-mt-20 border-t border-jb-border">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading>Pricing</SectionHeading>
         <Prose className="mt-4 max-w-2xl space-y-3">
           <p>
             Two rates. First lesson free so you can decide if the tutor and the
@@ -63,41 +47,32 @@ export function Pricing({ onBookSession }: PricingProps) {
         </Prose>
 
         {site.firstLessonFree && (
-          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-[6px] border border-jb-green/40 bg-jb-green/10 px-4 py-3">
+          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-xl border border-jb-green/40 bg-jb-green/10 px-4 py-3">
             <span className="font-mono text-[13px] text-jb-green">
               {site.firstLessonOffer}
             </span>
-            <span className="font-sans text-[14px] text-jb-secondary">
+            <span className="text-[14px] text-jb-secondary">
               No card details before that first session.
             </span>
           </div>
         )}
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {pricingPlans.map((plan) => {
             const style = accentStyles[plan.accent];
             return (
-              <article
-                key={plan.id}
-                className={`rounded-[6px] border p-5 ${style.border} ${style.bg}`}
-              >
-                <h3 className={`font-mono text-[15px] ${style.title}`}>
+              <Card key={plan.id} className={style.border}>
+                <h3 className={`text-[14px] font-semibold tracking-wide ${style.title}`}>
                   {plan.name}
                 </h3>
-                <p
-                  className={`mt-1 font-mono text-[12px] ${style.rule}`}
-                  aria-hidden="true"
-                >
-                  {"─".repeat(Math.min(plan.name.length + 2, 18))}
-                </p>
-                <p className="mt-4 font-mono text-[22px] text-jb-text">
+                <p className="mt-4 text-[28px] font-semibold text-jb-text">
                   {plan.rate}
                 </p>
-                <ul className="mt-4 space-y-2">
+                <ul className="mt-5 space-y-2">
                   {plan.features.map((feature) => (
                     <li
                       key={feature}
-                      className="flex items-center gap-2 font-sans text-[14px] text-jb-secondary"
+                      className="flex items-center gap-2 text-[15px] text-jb-secondary"
                     >
                       <span
                         className={`size-1.5 shrink-0 rounded-full ${style.bullet}`}
@@ -107,20 +82,20 @@ export function Pricing({ onBookSession }: PricingProps) {
                     </li>
                   ))}
                 </ul>
-              </article>
+              </Card>
             );
           })}
         </div>
 
-        <p className="mt-6 font-mono text-[12px] text-jb-muted">
+        <p className="mt-6 text-[13px] text-jb-muted">
           Sessions are usually 60 minutes. Rates apply after the free first
           lesson. {site.cancellationPolicy}
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-3 border-t border-jb-border pt-6">
+        <div className="mt-8">
           <Button onClick={onBookSession}>Book Free First Lesson</Button>
         </div>
-      </EditorSurface>
+      </div>
     </section>
   );
 }

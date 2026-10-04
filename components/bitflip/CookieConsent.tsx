@@ -59,19 +59,19 @@ export function CookieConsent() {
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-desc"
-      className="fixed inset-x-0 bottom-0 z-[70] border-t border-jb-border bg-jb-surface p-4 shadow-[0_-8px_24px_rgba(0,0,0,0.35)] sm:p-5"
+      className="fixed inset-x-0 bottom-0 z-[70] border-t border-jb-border bg-jb-surface/95 p-4 shadow-[0_-12px_40px_rgba(0,0,0,0.45)] backdrop-blur-md sm:p-5"
     >
       <div className="mx-auto flex max-w-3xl flex-col gap-4">
         <div>
           <p
             id="cookie-consent-title"
-            className="font-mono text-[14px] text-jb-text"
+            className="text-[15px] font-semibold text-jb-text"
           >
             Cookies
           </p>
           <p
             id="cookie-consent-desc"
-            className="mt-2 font-sans text-[14px] text-jb-secondary"
+            className="mt-2 text-[14px] text-jb-secondary"
           >
             We use cookies (and similar storage) to run the website. Where you
             agree, we may also use them to understand how people use it. Right
@@ -79,7 +79,7 @@ export function CookieConsent() {
             respect it if that changes.{" "}
             <Link
               href="/cookies"
-              className="text-jb-cyan hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-blue"
+              className="text-jb-link hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-link"
             >
               Cookie Policy
             </Link>
@@ -87,7 +87,7 @@ export function CookieConsent() {
         </div>
 
         {showManage && (
-          <label className="flex items-start gap-3 rounded-[6px] border border-jb-border bg-jb-tool px-3 py-3 font-sans text-[14px] text-jb-secondary">
+          <label className="flex items-start gap-3 rounded-xl border border-jb-border bg-jb-elevated px-3 py-3 text-[14px] text-jb-secondary">
             <input
               type="checkbox"
               checked={analytics}
@@ -95,7 +95,7 @@ export function CookieConsent() {
               className="mt-1"
             />
             <span>
-              <span className="font-mono text-[12px] text-jb-cyan">
+              <span className="font-mono text-[12px] text-jb-link">
                 Non-essential
               </span>
               <br />
@@ -107,7 +107,7 @@ export function CookieConsent() {
 
         <div className="flex flex-wrap gap-2">
           <Button onClick={() => save("accepted", true)}>Accept all</Button>
-          <Button variant="secondary" onClick={() => save("rejected", false)}>
+          <Button variant="ghost" onClick={() => save("rejected", false)}>
             Reject non-essential
           </Button>
           {showManage ? (

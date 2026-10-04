@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Manrope } from "next/font/google";
 import { site } from "@/lib/content";
 import { CookieConsent } from "@/components/bitflip/CookieConsent";
 import "./globals.css";
@@ -10,8 +10,8 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
 });
@@ -36,7 +36,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${inter.variable} h-full`}>
+    <html
+      lang="en"
+      className={`${jetbrainsMono.variable} ${manrope.variable} h-full`}
+    >
       <body className="min-h-full antialiased">
         {children}
         <CookieConsent />

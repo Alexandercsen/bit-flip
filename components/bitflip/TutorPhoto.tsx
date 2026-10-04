@@ -22,7 +22,7 @@ export function TutorPhoto({
       onContextMenu={(e) => e.preventDefault()}
       onDragStart={(e) => e.preventDefault()}
       className={cn(
-        "tutor-photo relative shrink-0 overflow-hidden border bg-jb-tool select-none",
+        "tutor-photo relative shrink-0 overflow-hidden rounded-xl border bg-jb-surface select-none",
         className
       )}
       style={{ width: size, height: size }}

@@ -9,11 +9,11 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "border-jb-blue bg-jb-blue text-jb-editor hover:bg-[#5a8ff5] focus-visible:ring-jb-blue",
+    "border-white/80 bg-black text-jb-text hover:bg-jb-elevated focus-visible:ring-jb-link",
   secondary:
-    "border-jb-blue/35 bg-jb-blue/10 text-jb-blue hover:border-jb-blue/60 hover:bg-jb-blue/15 focus-visible:ring-jb-blue",
+    "border-transparent bg-transparent text-jb-link hover:text-jb-text focus-visible:ring-jb-link",
   ghost:
-    "border-transparent bg-transparent text-jb-secondary hover:bg-jb-surface hover:text-jb-cyan focus-visible:ring-jb-blue",
+    "border-transparent bg-transparent text-jb-secondary hover:bg-jb-elevated hover:text-jb-text focus-visible:ring-jb-link",
 };
 
 export function Button({
@@ -26,8 +26,8 @@ export function Button({
     <button
       type="button"
       className={cn(
-        "inline-flex items-center justify-center rounded-[5px] border px-4 py-2 font-mono text-[13px] transition-colors duration-150 ease-out",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-jb-editor",
+        "inline-flex items-center justify-center rounded-full border px-5 py-2.5 font-sans text-[14px] font-medium transition-colors duration-200 ease-out",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-jb-bg",
         "disabled:cursor-not-allowed disabled:opacity-50",
         variants[variant],
         className
@@ -40,7 +40,7 @@ export function Button({
 }
 
 export const inputClassName =
-  "w-full rounded-[5px] border border-jb-border bg-jb-editor px-3 py-2 font-sans text-[14px] text-jb-text placeholder:text-jb-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-blue focus-visible:border-jb-blue transition-colors duration-150";
+  "w-full rounded-xl border border-jb-border bg-jb-surface px-3.5 py-2.5 font-sans text-[15px] text-jb-text placeholder:text-jb-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-link focus-visible:border-jb-link transition-colors duration-150";
 
 export function Divider({ className }: { className?: string }) {
   return <hr className={cn("border-0 border-t border-jb-border", className)} />;
@@ -62,5 +62,66 @@ export function FileIcon({
       )}
       aria-hidden="true"
     />
+  );
+}
+
+export function SectionHeading({
+  eyebrow,
+  children,
+  className,
+}: {
+  eyebrow?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={cn("max-w-3xl", className)}>
+      {eyebrow ? (
+        <p className="mb-3 font-mono text-[12px] uppercase tracking-[0.14em] text-jb-muted">
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2 className="text-3xl font-semibold tracking-tight text-jb-text sm:text-4xl">
+        {children}
+      </h2>
+    </div>
+  );
+}
+
+export function Card({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-xl border border-jb-border bg-jb-surface p-6 transition-colors duration-200 hover:border-jb-border-strong hover:bg-jb-elevated",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function Prose({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "font-sans text-[16px] leading-relaxed text-jb-secondary",
+        className
+      )}
+    >
+      {children}
+    </div>
   );
 }
