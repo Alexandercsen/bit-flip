@@ -402,8 +402,7 @@ export const tutors: Tutor[] = [
       "I've tutored Maynooth CS students on Java and Prolog, and helped 6th years prep for Leaving Certificate Computer Science.",
       "I care a lot about embedded systems and figuring out why something broke. In lessons I break problems into smaller pieces. I'll push you to reason through it, not wait for me to type the answer.",
     ],
-    linkedin:
-      "https://www.linkedin.com/in/alexander-coyle-%C5%9Fent%C3%BCrk-018a0b310/",
+    linkedin: "https://www.linkedin.com/in/alexandercsen/",
     photo: "/api/media/tutors/alexander-coyle.png",
   },
   {
