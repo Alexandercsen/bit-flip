@@ -21,11 +21,11 @@ export function About({ onBookSession, onContact, onViewTutor }: AboutProps) {
     >
       <div className="mx-auto max-w-6xl space-y-16 px-4 py-20 sm:px-6 lg:px-8">
         <div>
-          <SectionHeading>About BIT FLIP</SectionHeading>
+          <SectionHeading>About BIT FLIP STUDIO</SectionHeading>
           <Prose className="mt-6 max-w-2xl space-y-4">
             <p className="text-jb-text">
-              BIT FLIP is online tutoring for Python, Java, C++, and Leaving
-              Certificate Computer Science.
+              BIT FLIP STUDIO is online tutoring for Python, Java, C, C++, and
+              Leaving Certificate Computer Science.
             </p>
             <p className="text-[18px] font-medium text-jb-link">
               Most people don&apos;t need another course. They need someone who

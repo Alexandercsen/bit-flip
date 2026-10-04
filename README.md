@@ -1,6 +1,6 @@
-# BIT FLIP
+# BIT FLIP STUDIO
 
-Online programming tutoring in Python, Java, C++, and Leaving Certificate Computer Science.
+Online programming tutoring in Python, Java, C, C++, and Leaving Certificate Computer Science.
 
 **Flip the bit. Understand the code.**
 

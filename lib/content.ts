@@ -44,12 +44,12 @@ export type SectionMeta = {
 };
 
 export const site = {
-  name: "BIT FLIP",
-  legalName: "BIT FLIP",
+  name: "BIT FLIP STUDIO",
+  legalName: "BIT FLIP STUDIO",
   tagline: "Flip the bit. Understand the code.",
-  title: "BIT FLIP | Python, Java & C++ Tutoring",
+  title: "BIT FLIP STUDIO | Python, Java, C & C++ Tutoring",
   description:
-    "Online programming tutoring in Python, Java, C++, and Leaving Certificate Computer Science. First lesson free. Ireland.",
+    "Online programming tutoring in Python, Java, C, C++, and Leaving Certificate Computer Science. First lesson free. Ireland.",
   email: "bitflipireland@gmail.com",
   location: "Online",
   availability: "Evenings and weekends. Ask us what's free.",
@@ -85,6 +85,12 @@ export const projectTree: TreeNode[] = [
         label: "java.java",
         file: "subjects/java.java",
         breadcrumb: ["BIT-FLIP", "subjects", "java.java"],
+      },
+      {
+        id: "subject-c",
+        label: "c.c",
+        file: "subjects/c.c",
+        breadcrumb: ["BIT-FLIP", "subjects", "c.c"],
       },
       {
         id: "subject-cpp",
@@ -237,6 +243,33 @@ export const subjects: Subject[] = [
     ],
   },
   {
+    id: "c",
+    name: "C",
+    file: "c.c",
+    description:
+      "Pointers, memory, and the basics of how programs talk to the machine. Useful for college modules and systems work.",
+    level: "Beginner → Advanced",
+    topics: [
+      "C fundamentals",
+      "Variables and types",
+      "Pointers and arrays",
+      "Memory and malloc",
+      "Structs",
+      "Functions",
+      "File I/O",
+      "Debugging",
+      "Problem solving",
+    ],
+    codeTopics: [
+      "pointers",
+      "memory",
+      "structs",
+      "functions",
+      "debugging",
+      "problem solving",
+    ],
+  },
+  {
     id: "cpp",
     name: "C++",
     file: "cpp.cpp",
@@ -358,13 +391,13 @@ export const tutors: Tutor[] = [
     file: "tutor-one.py",
     className: "Alexander",
     role: "Programming Tutor",
-    subjects: ["Python", "Java", "C++", "Leaving Certificate"],
+    subjects: ["Python", "Java", "C", "Leaving Certificate"],
     experience: "SWE + CS tutoring",
     approach: "practical",
     shortIntro:
-      "Software engineer at a risk management and supplier information company (defense, finance, aerospace). BSc Software Engineering at Maynooth. Python, Java, C++, LC Comp Sci.",
+      "Software engineer at a risk management and supplier information company (defense, finance, aerospace). BSc Software Engineering at Maynooth. Python, Java, C, LC Comp Sci.",
     bio: [
-      "I'm Alexander, one of the tutors behind BIT FLIP. BSc of Software Engineering at Maynooth University. I work with C, C++, Python, and Java.",
+      "I'm Alexander, one of the tutors behind BIT FLIP STUDIO. BSc of Software Engineering at Maynooth University. I work with C, Python, and Java.",
       "I now work as a software engineer at a risk management and supplier information company serving defense, finance, and aerospace.",
       "I've tutored Maynooth CS students on Java and Prolog, and helped 6th years prep for Leaving Certificate Computer Science.",
       "I care a lot about embedded systems and figuring out why something broke. In lessons I break problems into smaller pieces. I'll push you to reason through it, not wait for me to type the answer.",
@@ -511,7 +544,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What do you teach?",
     answer:
-      "Python, Java, C++, and Leaving Certificate Computer Science support.",
+      "Python, Java, C, C++, and Leaving Certificate Computer Science support.",
   },
   {
     question: "Do I need experience?",
@@ -561,6 +594,7 @@ export const faqItems: FaqItem[] = [
 export const subjectOptions = [
   "Python",
   "Java",
+  "C",
   "C++",
   "Leaving Certificate",
   "Not sure yet",

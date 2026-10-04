@@ -84,7 +84,7 @@ export function Contact({ prefillSubject = "" }: ContactProps) {
     <section id="contact" className="scroll-mt-20 border-t border-jb-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionHeading>
-          Contact <span className="text-jb-link">BIT FLIP</span>
+          Contact
         </SectionHeading>
         <Prose className="mt-4 max-w-2xl">
           Tell us what you&apos;re learning and what&apos;s stuck. We usually

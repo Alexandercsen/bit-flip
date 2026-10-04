@@ -3,6 +3,7 @@
 import { subjects } from "@/lib/content";
 import { subjectAccent } from "@/lib/colors";
 import { Button, Divider, Prose } from "./ui";
+import { BrandLogo } from "./BrandLogo";
 
 type HeroProps = {
   onBookSession: () => void;
@@ -15,10 +16,8 @@ export function Hero({ onBookSession, onMeetTutors }: HeroProps) {
       <div className="hero-atmosphere relative overflow-hidden border-b border-jb-border">
         <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-32">
           <div className="section-fade">
-            <p className="font-sans text-5xl font-semibold tracking-tight text-jb-text sm:text-6xl lg:text-7xl">
-              BIT FLIP
-            </p>
-            <h1 className="mt-6 max-w-xl text-2xl font-medium leading-snug text-jb-text sm:text-3xl">
+            <BrandLogo size="hero" />
+            <h1 className="mt-8 max-w-xl text-2xl font-medium leading-snug text-jb-text sm:text-3xl">
               Programming tutoring,
               <br />
               without the headache.
@@ -27,6 +26,8 @@ export function Hero({ onBookSession, onMeetTutors }: HeroProps) {
               <span className="text-jb-blue">Python</span>
               <span className="text-jb-muted"> · </span>
               <span className="text-jb-orange">Java</span>
+              <span className="text-jb-muted"> · </span>
+              <span className="text-jb-cyan">C</span>
               <span className="text-jb-muted"> · </span>
               <span className="text-jb-purple">C++</span>
               <span className="text-jb-muted"> · </span>

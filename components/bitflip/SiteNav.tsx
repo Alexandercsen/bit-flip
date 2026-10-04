@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/cn";
-import { site } from "@/lib/content";
 import { Button } from "./ui";
+import { BrandLogo } from "./BrandLogo";
 
 const links = [
   { id: "about", label: "About" },
@@ -35,9 +35,9 @@ export function SiteNav({ onNavigate, onBook }: SiteNavProps) {
         <button
           type="button"
           onClick={() => go("home")}
-          className="font-sans text-[15px] font-semibold tracking-[0.08em] text-jb-text transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-link"
+          className="rounded-md transition-opacity hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-link"
         >
-          {site.name}
+          <BrandLogo size="nav" />
         </button>
 
         <nav

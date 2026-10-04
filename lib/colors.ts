@@ -2,6 +2,7 @@
 export function fileAccent(filename: string): string {
   if (filename.endsWith(".py")) return "text-jb-blue";
   if (filename.endsWith(".java")) return "text-jb-orange";
+  if (filename.endsWith(".c") && !filename.endsWith(".cpp")) return "text-jb-cyan";
   if (filename.endsWith(".cpp") || filename.endsWith(".h")) return "text-jb-purple";
   if (filename.endsWith(".md")) return "text-jb-green";
   if (filename.endsWith("/")) return "text-jb-yellow";
@@ -11,6 +12,7 @@ export function fileAccent(filename: string): string {
 export function fileDot(filename: string): string {
   if (filename.endsWith(".py")) return "bg-jb-blue";
   if (filename.endsWith(".java")) return "bg-jb-orange";
+  if (filename.endsWith(".c") && !filename.endsWith(".cpp")) return "bg-jb-cyan";
   if (filename.endsWith(".cpp") || filename.endsWith(".h")) return "bg-jb-purple";
   if (filename.endsWith(".md")) return "bg-jb-green";
   if (filename.endsWith("/")) return "bg-jb-yellow";
@@ -32,6 +34,12 @@ export const subjectAccent: Record<
     border: "border-jb-orange/40",
     bg: "bg-jb-orange/10",
     dot: "bg-jb-orange",
+  },
+  c: {
+    text: "text-jb-cyan",
+    border: "border-jb-cyan/40",
+    bg: "bg-jb-cyan/10",
+    dot: "bg-jb-cyan",
   },
   cpp: {
     text: "text-jb-purple",

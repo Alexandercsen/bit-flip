@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/content";
+import { BrandLogo } from "./BrandLogo";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -10,10 +11,8 @@ export function SiteFooter() {
         © {year} {site.legalName}. All rights reserved.
       </p>
 
-      <div className="mt-4 space-y-1 text-[14px] text-jb-secondary">
-        <p className="font-semibold tracking-[0.06em] text-jb-text">
-          {site.name}
-        </p>
+      <div className="mt-5 space-y-2 text-[14px] text-jb-secondary">
+        <BrandLogo size="footer" />
         <p>{site.country}</p>
       </div>
 

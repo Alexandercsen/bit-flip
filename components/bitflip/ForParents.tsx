@@ -30,9 +30,9 @@ export function ForParents({ onContact }: ForParentsProps) {
               need someone who can explain it without talking down to your child.
             </p>
             <p>
-              BIT FLIP is one-to-one online tutoring in Python, Java, C++, and
-              Leaving Certificate Computer Science. Lessons follow what they&apos;re
-              stuck on in school or college, not a canned syllabus.
+              BIT FLIP STUDIO is one-to-one online tutoring in Python, Java, C,
+              C++, and Leaving Certificate Computer Science. Lessons follow what
+              they&apos;re stuck on in school or college, not a canned syllabus.
             </p>
             <p className="text-jb-text">
               First lesson free. If the fit is wrong, that&apos;s useful information.
@@ -262,7 +262,7 @@ export function ForParents({ onContact }: ForParentsProps) {
             Email is fine. We&apos;ll answer without the brochure language.
           </p>
           <Button className="mt-4" onClick={onContact}>
-            Contact BIT FLIP
+            Contact BIT FLIP STUDIO
           </Button>
           <p className="mt-3 font-mono text-[12px] text-jb-muted">
             {site.email}

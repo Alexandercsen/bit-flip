@@ -6,7 +6,7 @@ import { cookiePolicy } from "@/lib/legal";
 
 export const metadata = buildLegalMetadata(
   cookiePolicy.title,
-  "How BIT FLIP uses cookies and similar technologies."
+  "How BIT FLIP STUDIO uses cookies and similar technologies."
 );
 
 export default function CookiesPage() {

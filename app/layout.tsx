@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   keywords: [
     "Python tutoring Ireland",
     "Java tutoring Ireland",
+    "C tutoring Ireland",
     "C++ tutoring Ireland",
     "programming tutor Ireland",
     "Leaving Certificate programming tutor",

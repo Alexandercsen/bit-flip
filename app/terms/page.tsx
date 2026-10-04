@@ -6,7 +6,7 @@ import { termsAndConditions } from "@/lib/legal";
 
 export const metadata = buildLegalMetadata(
   termsAndConditions.title,
-  "Terms for using the BIT FLIP website and tutoring."
+  "Terms for using the BIT FLIP STUDIO website and tutoring."
 );
 
 export default function TermsPage() {

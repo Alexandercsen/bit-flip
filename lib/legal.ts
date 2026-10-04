@@ -49,7 +49,7 @@ export const privacyPolicy = {
     {
       heading: "Who receives the data",
       body: [
-        "The tutors operating BIT FLIP, so we can reply and teach.",
+        `The tutors operating ${site.name}, so we can reply and teach.`,
         "Email delivery providers used to send and receive messages (for example Gmail / SMTP).",
         "Hosting providers that store and serve this website.",
         "We do not sell your personal data.",
@@ -104,7 +104,7 @@ export const cookiePolicy = {
     {
       heading: "What this covers",
       body: [
-        "This page explains how BIT FLIP uses cookies and similar technologies (including browser local storage) on this website.",
+        `This page explains how ${site.name} uses cookies and similar technologies (including browser local storage) on this website.`,
       ],
     },
     {
@@ -140,14 +140,14 @@ export const termsAndConditions = {
     {
       heading: "About these terms",
       body: [
-        `These terms cover use of the BIT FLIP website and tutoring arranged through ${site.email} or the contact form.`,
+        `These terms cover use of the ${site.name} website and tutoring arranged through ${site.email} or the contact form.`,
         `Operator: ${site.legalName}. Contact: ${site.email}. ${site.country}.`,
       ],
     },
     {
       heading: "What we offer",
       body: [
-        "Online one-to-one programming tutoring (Python, Java, C++, Leaving Certificate Computer Science support) at the rates shown on the site, unless we agree otherwise in writing.",
+        "Online one-to-one programming tutoring (Python, Java, C, C++, Leaving Certificate Computer Science support) at the rates shown on the site, unless we agree otherwise in writing.",
         "The first lesson is free. After that, fees apply as stated (currently €15/hour one-to-one, €20/hour exam prep) unless we confirm a different arrangement.",
       ],
     },
@@ -175,7 +175,7 @@ export const termsAndConditions = {
       heading: "Website content",
       body: [
         "Site content is for information. We try to keep it accurate but it may change (including prices and availability).",
-        "You may not scrape, copy, or reuse the site in a way that misrepresents BIT FLIP or harms the service.",
+        `You may not scrape, copy, or reuse the site in a way that misrepresents ${site.name} or harms the service.`,
       ],
     },
     {

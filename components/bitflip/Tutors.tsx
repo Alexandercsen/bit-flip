@@ -17,7 +17,7 @@ export function Tutors({ onBookSession }: TutorsProps) {
       <div className="mx-auto max-w-6xl space-y-12 px-4 py-20 sm:px-6 lg:px-8">
         <div>
           <SectionHeading eyebrow="Tutors">
-            Meet the people behind BIT FLIP
+            Meet the people behind BIT FLIP STUDIO
           </SectionHeading>
           <Prose className="mt-4">
             Profiles below. LinkedIn if you want more background.
@@ -85,9 +85,11 @@ export function Tutors({ onBookSession }: TutorsProps) {
                               ? "text-jb-blue"
                               : subject === "Java"
                                 ? "text-jb-orange"
-                                : subject === "C++"
-                                  ? "text-jb-purple"
-                                  : "text-jb-yellow"
+                                : subject === "C"
+                                  ? "text-jb-cyan"
+                                  : subject === "C++"
+                                    ? "text-jb-purple"
+                                    : "text-jb-yellow"
                           }
                         >
                           {subject}

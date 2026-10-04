@@ -16,7 +16,7 @@ export function Subjects({ onBookSession, onAskAbout }: SubjectsProps) {
         <SectionHeading eyebrow="Subjects">What we teach</SectionHeading>
         <Prose className="mt-4 max-w-2xl">
           <p>
-            Four things we actually teach. Pick the one that matches your
+            Five things we actually teach. Pick the one that matches your
             homework or exam. If you&apos;re unsure, say so in the contact form
             and we&apos;ll tell you where to start.
           </p>

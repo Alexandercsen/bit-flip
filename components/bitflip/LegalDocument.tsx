@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/bitflip/SiteFooter";
+import { BrandLogo } from "@/components/bitflip/BrandLogo";
+import { site } from "@/lib/content";
 
 type LegalSection = {
   heading: string;
@@ -12,7 +14,7 @@ export function buildLegalMetadata(
   description: string
 ): Metadata {
   return {
-    title: `${title} | BIT FLIP`,
+    title: `${title} | ${site.name}`,
     description,
   };
 }
@@ -29,14 +31,13 @@ export function LegalDocument({
   return (
     <div className="min-h-dvh bg-jb-bg text-jb-text">
       <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
-        <p className="text-[13px] text-jb-muted">
-          <Link
-            href="/"
-            className="text-jb-link hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-link"
-          >
-            ← BIT FLIP
-          </Link>
-        </p>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-3 text-jb-link transition-opacity hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-jb-link"
+        >
+          <span className="text-[13px] text-jb-muted">←</span>
+          <BrandLogo size="nav" />
+        </Link>
 
         <h1 className="mt-6 text-3xl font-semibold tracking-tight text-jb-text sm:text-4xl">
           {title}

@@ -6,7 +6,7 @@ import { privacyPolicy } from "@/lib/legal";
 
 export const metadata = buildLegalMetadata(
   privacyPolicy.title,
-  "How BIT FLIP collects and uses personal data."
+  "How BIT FLIP STUDIO collects and uses personal data."
 );
 
 export default function PrivacyPage() {

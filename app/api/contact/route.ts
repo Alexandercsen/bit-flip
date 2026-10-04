@@ -70,7 +70,7 @@ function buildEmailText(body: {
   availability?: string;
 }) {
   return [
-    `New BIT FLIP enquiry`,
+    `New BIT FLIP STUDIO enquiry`,
     ``,
     `Name: ${body.name}`,
     `Email: ${body.email}`,
@@ -114,10 +114,13 @@ async function sendWithGmail(body: {
   });
 
   const info = await transporter.sendMail({
-    from: `"BIT FLIP website" <${auth.user}>`,
+    from: `"BIT FLIP STUDIO" <${auth.user}>`,
     to: auth.user,
     replyTo: body.email,
-    subject: oneLine(`BIT FLIP enquiry: ${body.subject} (${body.name})`, 200),
+    subject: oneLine(
+      `BIT FLIP STUDIO enquiry: ${body.subject} (${body.name})`,
+      200
+    ),
     text: buildEmailText(body),
   });
 
@@ -156,7 +159,7 @@ async function sendWithFormSubmit(body: {
         message: body.message,
         lesson_type: body.format || "",
         availability: body.availability || "",
-        _subject: `BIT FLIP enquiry: ${body.subject} (${body.name})`,
+        _subject: `BIT FLIP STUDIO enquiry: ${body.subject} (${body.name})`,
         _template: "table",
         _replyto: body.email,
         // Ajax submissions can't complete an interactive captcha.
